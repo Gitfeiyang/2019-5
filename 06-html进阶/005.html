@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style>
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	#container{
+		width: 400px;
+		height: 400px;
+		background-color: gray;
+	}
+	#target{
+		width: 100px;
+		height: 100px;
+		background-color: #ff6700;
+	}	
+</style>
+<body>
+	<div id="container"></div>
+	<div id="target" draggable=true></div>
+</body>
+<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+<script>
+	$(function(){
+	   $('#target')
+	   .on('dragstart',function(ev){
+	   	// console.log(ev.target.id)
+	   	ev.originalEvent.dataTransfer.setDate('targetId','target')
+	   })
+
+	   $('#container')
+	   .on('dragover',function(ev){
+	   	var targetId = 	ev.originalEvent.dataTransfer.setDate('targetId')
+	   })
+
+	    .on('drop',function(ev){
+	    	ev.preventDefault();
+	    })
+	});
+</script>
+</html>

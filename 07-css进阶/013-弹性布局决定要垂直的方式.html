@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>012-弹性布局.html</title>
+</head>
+<style>
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	.father{
+		width: 1200px;
+		height: 500px;
+		border: 1px solid #000;
+		margin: 100px auto;
+		display: flex;
+		/*align-items: flex-end;*/
+		/*align-items: flex-start;*/
+		/*align-items: center;*/
+		align-items: baseline;
+	
+	}
+	.father div{
+		height: 50px;
+		/*float: left;*/
+	}
+	.son1{
+		width: 200px;
+		background-color: #926;
+	}
+	.son2{
+		width: 300px;
+		background-color: #966;
+	}
+	.son3{
+		width: 500px;
+		background-color: #177;
+	}
+	p{
+		margin-top: 20px;
+	}
+</style>
+<body>
+	<div class="father">
+		<div class="son1">div1</div>
+		<div class="son2">div2</div>
+		<div class="son3">div3</div>
+		<p>红红火火恍恍惚惚</p>
+	</div>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	test
+</body>
+<script>
+	var oDate = new Date();
+	document.cookie = "username=anmy";
+	document.cookie = "sex=male";
+	function getCook(key) {
+		// console.log(document.cookie)
+		var str = document.cookie;
+		var arr1 = str.split(";");
+		//console.log(arr1);
+		for (var i = 0; i < arr1.length; i++) {
+			console.log (arr1[i]);
+			var arr2 = arr1[i].split("=")
+			console.log(arr2)
+		}
+	}
+	getCook('username')
+</script>
+</html>
