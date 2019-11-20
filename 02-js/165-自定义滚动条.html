@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>165-自定义滚动条.html</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0px;
+		}
+		#father{
+			position: relative;
+			width: 500px;
+			height: 30px;
+			background-color: #ccc;
+			margin: 100px auto;
+		}
+		#box{
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 30px;
+			height: 30px;
+			background-color: red;
+		}
+		#box1{
+			width: 100px;
+			height: 100px;
+			background-color: red;
+			opacity: 0.5;
+		}
+	</style>
+</head>
+<body>
+	<div id="father">
+		<div id="box"></div>
+	</div>
+	<div id="box1"></div>
+</body>
+<script>
+	var oFather = document.getElementById('father');
+	var oBox = document.getElementById('box');
+	var oBox1 = document.getElementById('box1');
+	var disX=0;
+	oBox.onmousedown = function(ev){
+		// console.log('aaa')
+		disX = ev.clientX - oBox.offsetLeft;
+		document.onmousemove = function(ev){
+			var l = ev.clientX - disX;
+			if(l<0){
+				l=0;
+			}else if(l>(oFather.offsetWidth - oBox.offsetWidth)){
+				l = (oFather.offsetWidth - oBox.offsetWidth);
+			}
+			var scale = oBox.offsetLeft / (oFather.offsetWidth - oBox.offsetWidth);
+			console.log(scale)
+			oBox.style.left = l + 'px';
+			oBox1.style.width = 100 + 500 *scale + 'px';
+			oBox1.style.height = 100 + 500 *scale + 'px';
+			oBox1.style.opacity = 0.5 + 0.5*scale ;
+		}
+		document.onmouseup = function(){
+			document.onmousemove = null;
+			document.onmouseup = null;
+		}
+	}
+</script>
+</html>
