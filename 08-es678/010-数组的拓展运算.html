@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>010-数组的拓展运算.html</title>
+</head>
+<body>
+	
+</body>
+<script>
+	// let arr = [11,22]
+	// console.log(arr)
+	// console.log(...arr)
+
+
+	// let arr = [11,22]
+	// function total(n1,n2){
+	// 	console.log(n1+n2)
+	// }
+	// total(...arr)
+
+
+	// function total(arr){
+	// 	let result =0
+	// 	for (let i = 0; i < arr.length; i++) {
+	// 		result += arr[i]
+	// 	}
+	// 	console.log(result)
+	// }
+	// total(11,22,33,44)
+
+
+	// var arr = [11,56,33,45,7,98,4]
+	// console.log(Math.max(11,56,33,45,7,98,4))
+	// console.log(Math.max.apply(null,arr))
+
+	var arr = [11,56,33,45,7,98,4]
+	var arr2 = []
+	for(let i = 0;i<arr.length;i++){
+		arr2.push(arr[i])
+	}
+	arr2.push(222)
+	console.log('arr::',arr)
+	console.log('arr2::',arr)
+</script>
+</html>

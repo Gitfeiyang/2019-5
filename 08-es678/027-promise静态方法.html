@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>025-promise静态方法.html</title>
+</head>
+<body>
+	
+</body>
+<script>
+	function(){
+		
+	
+		return new Promise((resolve,reject)=>{
+			
+		})
+
+}
+	// .then(data=>{
+	// 	return 'ok data'
+	// })
+	// p1
+	// .then(data=>{
+	// 	console.log(data)
+	// })
+
+
+	const imgs = ['images/images (1).jpg','images/images.jpg','images/c (1).jpg'].map((src)=>{
+		return get ImgPromise(src)
+	})
+	const promises = Promise(src)
+	promises
+	.then(data=>{
+		console.log(data)
+	})
+
+</script>
+</html>

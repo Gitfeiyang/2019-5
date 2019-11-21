@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>012-深copy.html</title>
+</head>
+<body>
+	
+</body>
+	<script src="js/jquery-1.12.4.js"></script>
+	<script>
+		$(function() {
+			let obj1 ={
+			name:"tom",
+			age:18,
+			friends:{name:'leo',age:20},
+			pets:['cat','dog']
+		}
+			let obj2 = JSON.parse(JSON.stringify(obj1))
+			// const obj2 = $.extend(true,{},obj1)
+			obj2.name = 'amy'
+			obj2.friends.name = 'peter'
+			obj1.pets.push('tigger')
+			console.log(obj1)
+			console.log(obj2)
+			
+		})
+	</script>
+</html>

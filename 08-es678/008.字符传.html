@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>008.字符传.html</title>
+</head>
+<body>
+	<button id="btn">添加</button>
+	<div id="content"></div>
+</body>
+<script>
+	var arr = ['tom','leo','anmy','peter']
+	var oBtn = document.getElementById('btn')
+	var oContent = document.getElementById('content')
+	oBtn.onclick = function(){
+		var html = '<ul>'
+		for (let i =0; i<arr.length;i++) {
+			html +='<li>'+arr[i]+'</li>'
+		}
+		html +="<ul>"
+		oContent.innerHTML = html
+	}
+	let arr = ['tom','leo','jim']
+</script>
+</html>

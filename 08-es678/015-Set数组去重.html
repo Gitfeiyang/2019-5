@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>015-Set数组去重.html</title>
+</head>
+<body>
+	
+</body>
+<script>
+	let arr = [11,2,456,321,,44,87,33,11,2]
+	function uniqueArrl(arr){
+		let result = []
+		for(let i =0;i<arr.length;i++){
+			if(result.indexOf(arr[i],0) ==-1){
+				result.push(arr[i])
+			}
+		}
+		return result
+	}
+	console.log('arr::',arr)
+
+	// function uniqueArr2(arr){
+	// 	let result =[];
+	// 	let obj = {};
+	// 	for(let i =0;i<arr.length;i++){
+	// 		obj[arr[i]] = ''
+	// 		for(let key in obj){
+	// 			result.push(key*1)
+	// 		}
+
+	// 	}
+	// 	return result
+	// }
+	// console.log(uniqueArr2(arr))
+	// var arr1 = [11,22,33,44,11,22];
+	// let s1 = new Set(arr1);
+	// var arr2 = [...s1];
+
+	function uniqueArr3(arr) {
+		let result = []
+		let s = new Set(arr)
+		let result = [...s]
+		return result
+	}
+	console.log(uniqueArr3(arr))
+</script>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>023-回忆三个异步程序.html</title>
+</head>
+<body>
+	
+</body>
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+	//1.ajax请求
+	$.get('https://api.github.com/users/AIcolonel',function(data){
+		$.get(data.followers_url,function(data){
+			console.log(data)
+		})
+	})
+	//2。定时器
+	setTimeout(function(){
+		console.log('load timer success')
+	},0)
+	console.log('load timer .....')
+	//3.dom事件
+	var img =new Image()
+	img.onload = function(){
+		console.log('load img success')
+	}
+	img.onerror=function(){
+		console.log('load img error')
+	}
+	img.src = 'images/c1.jpg'
+	console.log('load img ...')
+</script>
+</html>

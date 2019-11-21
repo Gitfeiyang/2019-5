@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>034-异步函数async .html</title>
+</head>
+<body>
+	
+</body>
+<script>
+	
+
+
+	
+	let  p2 = null;
+	async function fn(){
+		p2 = new Promise((resolve,reject)=>{
+			setTimeout(()=>{
+				resolve('ok')
+			})
+		})
+		return p2
+	}
+
+	const p1 = fn()
+
+	console.log('p1::',p1)
+	console.log('p2::',p2)
+	console.log(p1==p2)
+</script>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>017-Symbol的使用.html</title>
+</head>
+<body>
+	
+</body>
+<script>
+	let s1 = Symbol('tom')
+	let s2 = Symbol('tom')
+	let obj={
+		name:'leo'
+	}
+	obj.s1+'xf001'
+	obj.s2='fx002'
+	console.log(obj)
+	console.log(obj[s1])
+	console.log(obj[s2])
+
+</script>
+</html>

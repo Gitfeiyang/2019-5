@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>025-promise静态方法.html</title>
+</head>
+<body>
+	
+</body>
+<script>
+	function getTimerPromise(delay){
+		return new Promise((resolve,reject) =>{
+			setTimeout(() =>{
+				resolve('get Dtat '+delay+' success...')
+			},delay)
+		})
+	}
+	var t1 = getTimerPromise(200)
+	var t2 = getTimerPromise(600)
+	var t3 = getTimerPromise(800)
+	var t4 = new Promise((resolve,reject) =>{
+			setTimeout(() =>{
+				reject('get Dtat '+100+' error...')
+			},100)
+		})
+	//接受一个Promise实例数组作为参数,不管对错，返回执行最快的那个promise对象
+	var promises = Promise.race([t1,t2,t3,t4]);
+	promises
+	.then(data =>{
+		console.log(promises)
+		console.log(data)
+	})
+	.catch(err =>{
+		console.log(promises)
+		console.log(err)
+	})
+</script>
+</html>

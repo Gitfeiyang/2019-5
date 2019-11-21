@@ -1,0 +1,42 @@
+body{
+	background-color: #ccc;
+}
+li{
+	list-style: none;
+}
+.container{
+	width: 990px;
+	margin:150px auto;
+}
+h1{
+	text-align: center;
+}
+.todo-input{
+	width: 100%;	
+	height: 40px;	
+	line-height:40px;
+	padding-left: 10px;
+	box-sizing: border-box;
+	outline: none;
+	font-size: 18px;
+}
+.content{
+	width: 100%;
+	margin: 0 auto;
+	padding: 0px;
+}
+.content-item{
+	/*list-style: none;*/
+	width: 100%;
+	height: 40px;
+	font-size: 18px;
+	line-height: 40px;
+	margin-top: 20px;
+	padding-left: 10px;
+	box-sizing: border-box;
+	background-color: #fff;
+	border-left: 2px solid #ff6700;
+}
+.content-item:hover{
+	background-color: #582;
+}

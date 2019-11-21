@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>025-promise静态方法.html</title>
+</head>
+<body>
+	
+</body>
+<script>
+	const promise = new Promise((resolve,reject)=>{
+		console.log('do now...')
+		setTimeout(function(){
+			resolve('get data ok')
+		},100)
+	})
+
+
+	// .then(data=>{
+	// 	return 'ok data'
+	// })
+	// p1
+	// .then(data=>{
+	// 	console.log(data)
+	// })
+
+
+	let p2
+	const p1 = promise
+	.then(data=>{
+		p2 = new Promise((resolve,reject)=>{
+		setTimeout(function(){
+			resolve('now promise ok')
+		},100)
+	    })
+		return p2
+	})
+
+	p1
+	.then(data=>{
+		console.log('p1::',p2)
+		console.log('p2::',p2)
+		console.log(p1 == p2)
+	})
+
+</script>
+</html>
