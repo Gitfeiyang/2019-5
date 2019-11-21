@@ -1,0 +1,9 @@
+#navbar{
+  float: right;
+  margin-right: 100px;
+  margin-top: 8px;
+}
+.content{
+	margin-top: 20px;
+	min-height: 300px;
+}
