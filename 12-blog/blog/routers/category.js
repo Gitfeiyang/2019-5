@@ -37,7 +37,7 @@ router.get('/', (req, res) => {
 })	
 //显示新增分类列表页面
 router.get('/add', (req, res) => {
-	res.render('admin/category_add',{
+	res.render('admin/category_add_edit',{
 		userInfo:req.userInfo
 	})
 })	
@@ -92,7 +92,7 @@ router.get('/edit/:id', (req, res) => {
 	//查找数据库获取对应分类
 	CategoryModel.findById(id)
 	.then(category=>{
-		res.render('admin/category_edit',{
+		res.render('admin/category_add_edit',{
 			userInfo:req.userInfo,
 			category
 		})
@@ -105,4 +105,81 @@ router.get('/edit/:id', (req, res) => {
 	
 	})
 })	
+
+//处理编辑分类
+router.post('/edit',(req,res)=>{
+	//1.获取参数
+	let { name,order,id } = req.body
+	if(!order){
+		order = 0
+	}
+	//2.根据ID获取该条数据
+	CategoryModel.findById(id)
+	.then(category=>{
+		if(category.name == name && category.order == order){//数据没有更改
+			res.render('admin/err',{
+				userInfo:req.userInfo,
+				message:'数据没有更改,请修改后在提交'
+			})
+		}else{//可以更改数据
+			CategoryModel.findOne({name:name,_id:{$ne:id}})
+			.then(category=>{
+				if(category){//数据库中有该分类名称,不可同名
+					res.render('admin/err',{
+						userInfo:req.userInfo,
+						message:'该分类名称已经存在,请换一个名称'
+					})
+				}else{//可以更新名称
+					CategoryModel.updateOne({_id:id},{name,order})
+					.then(data=>{
+						res.render('admin/ok',{
+							userInfo:req.userInfo,
+							message:'更新分类成功',
+							url:'/category'
+						})
+					})
+					.catch(err=>{
+						res.render('admin/err',{
+							userInfo:req.userInfo,
+							message:'数据库操作失败,请稍后再试!!!'
+						})
+					})
+				}
+			})
+			.catch(err=>{
+				res.render('admin/err',{
+					userInfo:req.userInfo,
+					message:'数据库操作失败,请稍后再试!!!'
+				})
+			})
+		}
+	})
+	.catch(err=>{
+		res.render('admin/err',{
+			userInfo:req.userInfo,
+			message:'数据库操作失败,请稍后再试!!!'
+		})
+	})
+	//3.验证数据是否可以更新
+})
+//处理删除分类
+router.get('/delete/:id',(req,res)=>{
+	const id = req.params.id
+	//通过ID在数据库中找到并删除
+	CategoryModel.deleteOne({_id:id})
+		.then(category=>{
+			res.render('admin/ok',{
+				userInfo:req.userInfo,
+				message:'删除分类成功',
+				url:'/category'
+			})
+		})
+		.catch(err=>{
+			res.render('admin/err',{
+				userInfo:req.userInfo,
+				message:'数据库操作失败,请稍后再试!!!',
+				url:'/category'
+			})
+		})
+})
 module.exports = router

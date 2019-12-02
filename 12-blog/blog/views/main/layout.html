@@ -28,10 +28,9 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
           <li class="active"><a href="index.html">首页<span class="sr-only">(current)</span></a></li>
-          <li><a href="list.html">HTML/CSS</a></li>
-          <li><a href="list.html">JavaScript</a></li>
-          <li><a href="list.html">学无止境</a></li>
-          <li><a href="list.html">我的足迹</a></li>
+          {% for category in categories %}
+          <li><a href="/list/{{ category._id.toString() }}">{{ category.name }}</a></li>
+          {% endfor %}
         </ul>
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container -->
@@ -142,8 +141,8 @@
                   </a>
                 </div>
                 <div class="media-body">
-                  <h4 class="media-heading">Tom</h4>
-                  80后草根！07年入行。一直潜心研究web技术，一边工作一边积累经验，分享一些个人心得。
+                  <h4 class="media-heading">吕三岁</h4>
+                  95后草根！还没有入行。一直潜心研究web技术，一边积累经验，分享一些个人心得。
                 </div>
               </div>
             </div>
@@ -154,14 +153,9 @@
             </div>
             <div class="panel-body">
               <ul class="list-group">
-                <li class="list-group-item"><a href="detail.html" class="link text-ellipsis" target="_blank">Cras justo odioCras justo odioCras justo odioCras justo odioCras justo odio</a></li>
-                <li class="list-group-item"><a href="detail.html" class="link text-ellipsis" target="_blank">Cras justo odioCras justo odioCras justo odioCras justo odioCras justo odio</a></li>
-                <li class="list-group-item"><a href="detail.html" class="link text-ellipsis" target="_blank">Cras justo odioCras justo odioCras justo odioCras justo odioCras justo odio</a></li>
-                <li class="list-group-item"><a href="detail.html" class="link text-ellipsis" target="_blank">Cras justo odioCras justo odioCras justo odioCras justo odioCras justo odio</a></li>
-                <li class="list-group-item"><a href="detail.html" class="link text-ellipsis" target="_blank">Cras justo odioCras justo odioCras justo odioCras justo odioCras justo odio</a></li>
-                <li class="list-group-item"><a href="detail.html" class="link text-ellipsis" target="_blank">Cras justo odioCras justo odioCras justo odioCras justo odioCras justo odio</a></li>
-                <li class="list-group-item"><a href="detail.html" class="link text-ellipsis" target="_blank">Cras justo odioCras justo odioCras justo odioCras justo odioCras justo odio</a></li>
-                <li class="list-group-item"><a href="detail.html" class="link text-ellipsis" target="_blank">Cras justo odioCras justo odioCras justo odioCras justo odioCras justo odio</a></li>                                                 
+                {% for topArticle in topArticles %}
+                <li class="list-group-item"><a href="/detail/{{topArticle._id.toString()}}" class="link text-ellipsis" target="_blank">[{{topArticle.click}}] {{topArticle.title}} </a></li>                                                 
+                {% endfor %}
               </ul>     
             </div>
           </div>
@@ -170,7 +164,7 @@
               <h3 class="panel-title">关注我</h3>
             </div>
             <div class="panel-body">
-              <img src="img/qq.jpg" class="img-responsive" alt="">
+              <img src="img/qq.jpg" class="img-responsive">
             </div>
           </div>                                         
         </div>
@@ -184,6 +178,7 @@
 
 <script src="lib/jquery/jquery-1.12.4.min.js"></script> 
 <script src="lib/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script src="js/pagination.js"></script>
 <script src="js/common.js"></script>
 <script src="js/logout.js"></script>
 {% block footer %}{% endblock %}

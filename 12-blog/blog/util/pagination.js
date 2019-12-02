@@ -4,6 +4,7 @@
 	query:查询条件
 	projection:显示字段信息
 	sort:排序
+	populates:关键查询
 }
 */
 
@@ -19,7 +20,7 @@ async function pagination(options){
 	*/
 
 	const limit = 2
-	let { page,model,query,projection,sort } = options
+	let { page,model,query,projection,sort,populates } = options
 	if(isNaN(page)){
 		page = 1
 	}
@@ -45,7 +46,16 @@ async function pagination(options){
 		}
 
 		let skip = (page-1)*limit
-		const docs = await model.find(query,projection).sort(sort).skip(skip).limit(limit)
+		
+		//关联查询
+		let result = model.find(query,projection)
+		if(populates){
+			populates.forEach(function(populate){
+				return result.populate(populate)
+			})
+		}
+
+		const docs = await result.sort(sort).skip(skip).limit(limit)
 		
 		return{
 			docs:docs,
