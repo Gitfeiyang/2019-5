@@ -3,12 +3,20 @@ import './App.css'
 class App extends Component{
 	constructor(props){
 		super(props)
+		// 初始化state
 		this.state = {
 			list:['吃饭','睡觉','睡觉觉'],
 			task:''
 		}
 	}
 	handelAdd(){
+		/*
+		console.log('btn click')
+		console.log(this.state)
+		this.state.list.push(this.state.task)
+		console.log(this.state)
+		*/
+		// console.log(this.state)
 		const list = [...this.state.list,this.state.task]
 		this.setState({
 			list:list,
@@ -16,11 +24,18 @@ class App extends Component{
 		})
 	}
 	handleInput(ev){
+		/*
+		console.log(ev.target.value)
+		console.log(this.state)
+		this.state.task = ev.target.value
+		console.log(this.state)
+		*/
 		this.setState({
 			task:ev.target.value	
 		})
 	}
 	handleDel(index){
+		console.log(index)
 		const list = [...this.state.list]
 		list.splice(index,1)
 		this.setState({
