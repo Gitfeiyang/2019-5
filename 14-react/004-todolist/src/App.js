@@ -1,5 +1,6 @@
 import React,{Component,Fragment} from 'react'
 import './App.css'
+import Item from './Item.js'
 class App extends Component{
 	constructor(props){
 		super(props)
@@ -7,6 +8,7 @@ class App extends Component{
 			list:['吃饭','睡觉','睡觉觉'],
 			task:''
 		}
+		this.handleInput = this.handleInput.bind(this)
 	}
 	handelAdd(){
 		const list = [...this.state.list,this.state.task]
@@ -27,6 +29,19 @@ class App extends Component{
 			list:list
 		})
 	}
+	getItems(){
+		this.state.list.map((item,index)=>{
+			return (
+				<Item 
+					key={index} 
+					task={item} 
+					list={this.state.list} 
+					index={index}
+					handleDel = {this.handleDel.bind(this,index)}
+					 />
+				)
+			})
+	}
 	render(){
 		return (
 			<div className="App">
@@ -34,19 +49,17 @@ class App extends Component{
 				<button className="btn" onClick={this.handelAdd.bind(this)}>提交</button>
 				<ul className="list">
 					{
-					// <li>吃饭</li>
-					// <li>睡觉</li>
-					// <li>打豆豆</li>
 					this.state.list.map((item,index)=>{
-						return (
-							<li 
-								key={index}
-								onClick={this.handleDel.bind(this,index)}
-							>
-								{item}
-							</li>
-							)
-						})
+			return (
+				<Item 
+					key={index} 
+					task={item} 
+					list={this.state.list} 
+					index={index}
+					handleDel = {this.handleDel.bind(this,index)}
+					 />
+				)
+			})
 					}
 				</ul>
 			</div>
@@ -55,3 +68,7 @@ class App extends Component{
 }
 
 export default App
+
+
+
+
