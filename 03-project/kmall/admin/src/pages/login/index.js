@@ -12,11 +12,12 @@ class NormalLoginForm extends React.Component {
 		super(props)
 		this.handleSubmit=this.handleSubmit.bind(this)
 	}
-  handleSubmit (e){
+  handleSubmit(e){
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        console.log('Received values of form: ', values);
+        this.props.handleLogin(values)
+        // console.log(values)
       }
     });
   };
@@ -28,7 +29,7 @@ class NormalLoginForm extends React.Component {
 	    <Form className="ant-form">
 	        <Form.Item>
 	          {getFieldDecorator('username', {
-	            rules: [{ required: true, message: '请输入用户名!' },{pattern:/^[a-z][0-9a-z_]{2,5}$/i,message:'用户名以字母开头的3-6个字符'}],
+	            rules: [{ required: true, message: '请输入用户名!' },{pattern:/^[a-z][0-9a-z_]{2,6}$/i,message:'用户名以字母开头的3-6个字符'}],
 	          })(
 	            <Input
 	              prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
@@ -38,7 +39,7 @@ class NormalLoginForm extends React.Component {
 	        </Form.Item>
 	        <Form.Item>
 	          {getFieldDecorator('password', {
-	            rules: [{ required: true, message: '请输入密码!' },{pattern:/^[0-9a-z_]{2,5}$/i,message:'密码3-6个字符'}],
+	            rules: [{ required: true, message: '请输入密码!' },{pattern:/^[0-9a-z_]{2,6}$/i,message:'密码3-6个字符'}],
 	          })(
 	            <Input
 	              prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
@@ -51,7 +52,7 @@ class NormalLoginForm extends React.Component {
 	        <Button 
 	        type="primary" 
 	        className="login-form-button btn-submit"
-	        onClick={this.handleSubmit.bind(this)}
+	        onClick={this.handleSubmit}
 	        >
 	            登录
 	        </Button>
@@ -75,7 +76,7 @@ const mapStateToProps = (state)=>{
 const mapDispatchToProps = (dispatch)=>{
 	return {
 		handleLogin:(values)=>{
-
+			dispatch(actionCreator.getLoginAction(values))
 		}
 	}
 }

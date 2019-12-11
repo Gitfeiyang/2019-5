@@ -31,6 +31,7 @@ module.exports = {
     resolve:{
         alias:{
             pages:path.resolve(__dirname,'./src/pages'),
+            util:path.resolve(__dirname,'./src/util/')
         }
     },
 	module: {

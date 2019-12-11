@@ -1,35 +1,36 @@
 import axios from 'axios'
 import * as types from './actionTypes.js'
-
-export const getChangeItemAction = (val)=>({
-	type:types.CHANGE_ITEM,
-	payload:val
-})
-export const getAddItemAction = ()=>({
-	type:types.ADD_ITEM
-})
-export const getDeleteItemAction = (index)=>({
-	type:types.DEL_ITEM,
-	payload:index
-})
-
-
-
+import { message } from 'antd'
+import { saveUsername } from 'util'
 
 const getLoadInitAction = (data) =>({
 	type:types.LOAD_DATA,
 	payload:data
 })
 
-export const getRequestLoadDataAction = ()=>{
+export const getLoginAction = (values)=>{
 	return (dispatch,getState)=>{
-		axios.get('http://127.0.0.1:3000')
+		values.role='admin'
+		axios({
+			method:'post',
+			url:'http://127.0.0.1:3000/sessions/users',
+			data:values
+		})
 		.then(result=>{
-			//派发action
-			dispatch(getLoadInitAction(result.data))
+			console.log(result)
+			const data = result.data
+			console.log(data)
+			if(data.code == 0){//登陆成功
+				// 1.将用户信息保存到前台
+				saveUsername(data.data.username)
+				// 2.返回到后台数据
+				window.location.href = '/'
+			}else{//登陆失败
+				message.error(data.message);
+			}
 		})
 		.catch(err=>{
-			console.log(err)
+			message.error('请求失败,请稍后再试!')
 		})
 	}
 }
