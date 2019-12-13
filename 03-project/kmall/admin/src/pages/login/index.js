@@ -23,7 +23,8 @@ class NormalLoginForm extends React.Component {
   };
 
   render() {
-    const { getFieldDecorator } = this.props.form;
+    const { getFieldDecorator } = this.props.form
+    const { isFecthing } = this.props
     return (
     	<div className="Login">
 	    <Form className="ant-form">
@@ -53,6 +54,7 @@ class NormalLoginForm extends React.Component {
 	        type="primary" 
 	        className="login-form-button btn-submit"
 	        onClick={this.handleSubmit}
+	        loading={isFecthing}
 	        >
 	            登录
 	        </Button>
@@ -69,7 +71,7 @@ const WrappedNormalLoginForm = Form.create({ name: 'normal_login' })(NormalLogin
 //将属性映射到组件中
 const mapStateToProps = (state)=>{
 	return {
-		
+		isFecthing:state.get('login').get('isFecthing')
 	}
 }
 //将方法映射到组件

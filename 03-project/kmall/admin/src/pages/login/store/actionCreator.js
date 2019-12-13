@@ -3,13 +3,18 @@ import * as types from './actionTypes.js'
 import { message } from 'antd'
 import { saveUsername } from 'util'
 
-const getLoadInitAction = (data) =>({
-	type:types.LOAD_DATA,
-	payload:data
+const getLoginStartAction = () =>({
+	type:types.LOGIN_REQUEST_START
 })
+const getLoginDoneAction = () =>({
+	type:types.LOGIN_REQUEST_DONE
+})
+
 
 export const getLoginAction = (values)=>{
 	return (dispatch,getState)=>{
+		//发送请求前显示loading
+		dispatch(getLoginStartAction())
 		values.role='admin'
 		axios({
 			method:'post',
@@ -24,13 +29,17 @@ export const getLoginAction = (values)=>{
 				// 1.将用户信息保存到前台
 				saveUsername(data.data.username)
 				// 2.返回到后台数据
-				window.location.href = '/'
+				window.location.href = '/home'
 			}else{//登陆失败
 				message.error(data.message);
 			}
 		})
 		.catch(err=>{
 			message.error('请求失败,请稍后再试!')
+		})
+		.finally(()=>{
+			//请求完毕取消loading
+			dispatch(getLoginDoneAction())
 		})
 	}
 }

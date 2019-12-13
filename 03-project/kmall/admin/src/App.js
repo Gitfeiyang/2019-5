@@ -5,19 +5,46 @@ import {
   // HashRouter as Router,
   Switch,
   Route,
-  Link
+  Link,
+  Redirect
 } from "react-router-dom";
 
+import {getUsername} from 'util'
+
 import Login from 'pages/login'
+import Home from 'pages/home'
+import Err from 'common/err/'
 
 
 
 class App extends Component{
 	render(){
+		const HomeRoute = ({component:Component,...rest})=>{
+			return (
+				<Route
+					render={(props)=>{
+						return getUsername() ? <Component /> : <Redirect to='/login' />
+					}}
+				/>
+			)
+		}
+		const LoginRoute = ({component:Component,...rest})=>{
+			return (
+				<Route
+					render={(props)=>{
+						return getUsername() ? <Redirect to='/' /> : <Component />
+					}}
+				/>
+			)
+		}
 		return(
 			<Router>
 				<div className='App'>
-					<Route path='/login' component={Login} />
+				<Switch>
+					<HomeRoute exact path='/' component={Home} />
+					<LoginRoute path='/login' component={Login} />
+					<Route component={Err} />
+					</Switch>
 				</div>
 			</Router>
 		)
