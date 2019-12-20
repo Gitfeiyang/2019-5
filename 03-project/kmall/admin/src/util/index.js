@@ -4,6 +4,6 @@ export const saveUsername = (username)=>{
 export const getUsername = ()=>{
 	return window.localStorage.getItem('username')
 }
-export const removeUsernmae = ()=>{
+export const removeUsername = ()=>{
 	return window.localStorage.removeItem('username')
 }

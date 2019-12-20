@@ -1,36 +1,46 @@
-
 import axios from 'axios'
 import * as types from './actionTypes.js'
+import api from 'api'
 
-export const getChangeItemAction = (val)=>({
-	type:types.CHANGE_ITEM,
-	payload:val
-})
-export const getAddItemAction = ()=>({
-	type:types.ADD_ITEM
-})
-export const getDeleteItemAction = (index)=>({
-	type:types.DEL_ITEM,
-	payload:index
+
+const getSetCountAction = (payload) =>({
+	type:types.SET_COUNT,
+	payload
 })
 
-
-
-
-const getLoadInitAction = (data) =>({
-	type:types.LOAD_DATA,
-	payload:data
-})
-
-export const getRequestLoadDataAction = ()=>{
+export const getCountAction = ()=>{
 	return (dispatch,getState)=>{
-		axios.get('http://127.0.0.1:3000')
+		api.getCounts()
 		.then(result=>{
-			//派发action
-			dispatch(getLoadInitAction(result.data))
+			// console.log(result)
+			const data = result.data
+			if(data.code == 0){
+				//派发action将获取的后台数据存到store
+				// console.log('aaa')
+				dispatch(getSetCountAction(data.data))
+
+			}
 		})
 		.catch(err=>{
 			console.log(err)
 		})
+		/*
+		axios({
+			method:'get',
+			url:'http://127.0.0.1:3000/counts',
+			withCredentials:true
+		})
+		.then(result=>{
+			// console.log(result)
+			const data = result.data
+			if(data.code == 0){
+				//派发action将获取的后台数据存到store
+				dispatch(getSetCountAction(data.data))
+			}
+		})
+		.catch(err=>{
+			console.log(err)
+		})
+		*/
 	}
 }

@@ -9,16 +9,19 @@ import {
   Redirect
 } from "react-router-dom";
 
+import api from 'api'
 import {getUsername} from 'util'
 
 import Login from 'pages/login'
 import Home from 'pages/home'
+import User from 'pages/user'
 import Err from 'common/err/'
 
 
 
 class App extends Component{
 	render(){
+		// api.login({id:123})
 		const HomeRoute = ({component:Component,...rest})=>{
 			return (
 				<Route
@@ -42,9 +45,10 @@ class App extends Component{
 				<div className='App'>
 				<Switch>
 					<HomeRoute exact path='/' component={Home} />
+					<HomeRoute path='/user' component={User} />
 					<LoginRoute path='/login' component={Login} />
 					<Route component={Err} />
-					</Switch>
+				</Switch>
 				</div>
 			</Router>
 		)

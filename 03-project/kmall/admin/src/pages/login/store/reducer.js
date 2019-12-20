@@ -9,7 +9,7 @@ export default (state=defaultState,action)=>{
 		return state.set('isFecthing',true)
 	}
 	if(action.types == types.LOGIN_REQUEST_DONE){
-		return state.set('isFecthing',fales)
+		return state.set('isFecthing',false)
 	}
 	return state
 }

@@ -22,53 +22,10 @@ a{
 	font-size: 16px;
 	margin-right: 15px;
 }
-/*.carousel{
-	width: 750px;
-	height: 420px;
-	float: left;
-}*/
-/*.carousel-inner{
-	margin-left: -10px;
-}*/
-.carousel-control.left{
-	/*margin-left: 220px;*/
-	/*height: 420px;*/
-	/*margin-top: 73px;*/
+.ad{
+	margin-top: 20px;
 }
-.carousel-control.right{
-	/*margin-right: 634px;*/
-	/*height: 420px;*/
-	/*margin-top: 73px;*/
-}
-.carousel-indicators{
-	/*margin-left: -264px;*/
-}
-/*.carousel-inner>.item>a>img, .carousel-inner>.item>img{
-	width: 736px;
-	height: 420px;
-}*/
-/*.container {
-    width: 1170px;
-}*/
-/*.both-left{
-	background-color: #ccc;
-	width: 390px;
-	height: 1469px;
-	float: left;
-}*/
-/*.top .ad img{
-	width: 390px;
-	height: 200px;
-}*/
-/*.top .panel .panel-body .img-responsive{
-	width: 328px;
-	height: 329px;
-}*/
-/*.media-body, .media-left, .media-right .img-me{
+.panel-body .media .img-me{
 	width: 100px;
 	height: 100px;
-}*/
-.ad img{
-	width: 200px;
-	/*height: 200px;*/
 }
