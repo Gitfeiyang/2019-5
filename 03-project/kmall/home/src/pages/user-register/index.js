@@ -35,6 +35,30 @@ var page = {
 				_this.submit()
 			}
 		})
+		//监听用户名失去焦点判断用户名是否存在
+		$('[name="username"]').on('blur',function(){
+			var username = $.trim($(this).val())
+			//如果没有输入用户名或用户名验证不合法则不需要向后台发送请求
+			if(!_util.validate(username,'required')){
+				result.msg = '用户名不能为空'
+				return 
+			}
+			if(!_util.validate(username,'username')){
+				result.msg = '用户名格式不正确'
+				return 
+			}
+			api.checkUsername({
+				data:{
+					username:username
+				},
+				success:function(data){
+					formErr.hide()
+				},
+				error:function(msg){
+					formErr.show(msg)
+				}
+			})
+		})
 	},
 	submit:function(){
 		//1.获取表单数据
@@ -51,17 +75,18 @@ var page = {
 		if(formDataValidate.status){
 			formErr.hide()
 			//发送ajax请求
-			/*
-			api.login({
+			
+			api.register({
 				data:formData,
 				success:function(data){
-					window.location.href = '/'
+					window.location.href = '/result.html'
+					console.log(data)
 				},
 				error:function(msg){
 					formErr.show(msg)
 				}
 			})
-			*/
+			
 
 		}else{//验证不通过,错误提示
 			formErr.show(formDataValidate.msg)

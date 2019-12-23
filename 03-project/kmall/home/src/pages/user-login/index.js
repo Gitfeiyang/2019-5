@@ -48,7 +48,7 @@ var page = {
 		//3.验证通过,发送ajax请求
 		if(formDataValidate.status){
 			formErr.hide()
-			//发送ajax请求
+			// 发送ajax请求
 			api.login({
 				data:formData,
 				success:function(data){
@@ -76,6 +76,7 @@ var page = {
 				}
 			})
 			*/
+
 
 		}else{//验证不通过,错误提示
 			formErr.show(formDataValidate.msg)

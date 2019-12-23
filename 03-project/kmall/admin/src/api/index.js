@@ -1,28 +1,37 @@
 import { SERVER,API_CONFIG } from './config.js'
 import axios from 'axios'
-import {removerUsername} from 'util'
+import {removeUsername} from 'util'
 
 const getApiObj = (API_CONFIG)=>{
 	const apiObj = {}
 	for(let key in API_CONFIG){
 		apiObj[key] = (data)=>{
-			let url = SERVER + API_CONFIG[key][0]
-			let method = API_CONFIG[key][1]
+			let url = SERVER + API_CONFIG[key][0] || '/'
+			let method = API_CONFIG[key][1] || 'get'
 			//发送请求
 			return request(url,method,data)
 		}
 	}
-  
+ 
 	return apiObj
 }
 const request = (url,method,data)=>{
 	return new Promise((resolve,reject)=>{
-		axios({
+		const options = {
 			method:method,
 			url:url,
-			withCredentials:true,
-			data:data
-		})
+			withCredentials:true
+		}
+		//携带参数
+		switch(method.toUpperCase()){
+			case 'GET':
+			case 'DELETE':
+				options.params = data
+				break
+			default :
+				options.data = data
+		}
+		axios(options)
 		.then(result=>{
 			if (result.data.code == 10) {
 				//后台session过期或通过别的方式清除掉,为了保持状态统一，
@@ -33,8 +42,6 @@ const request = (url,method,data)=>{
 				window.location.herf='login'
 				reject('请求失败，没有权限')
 			}
-			
-
 			resolve(result)
 		})
 		.catch(err=>{

@@ -12,11 +12,11 @@ mongoose.connect('mongodb://localhost:27017/kmall',{ useNewUrlParser: true });
 const db = mongoose.connection;
 
 db.on('error',(err)=>{
-	throw err
+    throw err
 });
 
 db.once('open',()=>{
-	console.log('DB connected....');
+    console.log('DB connected....');
 });
 
 
@@ -24,11 +24,11 @@ const app = express();
 
 //跨域设置
 app.use((req,res,next)=>{
-	res.append("Access-Control-Allow-Origin","http://localhost:3001");
-	res.append("Access-Control-Allow-Credentials",true);
-	res.append("Access-Control-Allow-Methods","GET, POST, PUT,DELETE");
-	res.append("Access-Control-Allow-Headers", "Content-Type, X-Requested-With,X-File-Name"); 
-	next();
+    res.append("Access-Control-Allow-Origin","http://localhost:3001");
+    res.append("Access-Control-Allow-Credentials",true);
+    res.append("Access-Control-Allow-Methods","GET, POST, PUT,DELETE");
+    res.append("Access-Control-Allow-Headers", "Content-Type, X-Requested-With,X-File-Name"); 
+    next();
 })
 
 //配置静态资源
@@ -62,8 +62,8 @@ app.use(session({
 }))
 
 app.use((req,res,next)=>{
-	req.userInfo  = req.session.userInfo || {};
-	next();	
+    req.userInfo  = req.session.userInfo || {};
+    next(); 
 });
 
 //添加处理post请求的中间件
@@ -86,5 +86,5 @@ app.use("/floors",require('./routes/floors.js'));
 
 
 app.listen(3000,()=>{
-	console.log('server is running at 127.0.0.1:3000')
+    console.log('server is running at 127.0.0.1:3000')
 });

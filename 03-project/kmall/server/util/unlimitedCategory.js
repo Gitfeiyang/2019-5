@@ -1,4 +1,3 @@
-
 /**
  * [repeat 重复字符串]
  * @param  {[String]} src [字符串]

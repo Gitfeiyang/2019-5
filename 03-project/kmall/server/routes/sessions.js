@@ -15,10 +15,10 @@ router.get('/user',(req,res)=>{
 })
 */
 
+
 //用户登录
 router.post("/users",(req,res)=>{
 	const { username,password,role} = req.body
-	
 	let isAdmin = false
 	if(role == 'admin'){
 		isAdmin = true

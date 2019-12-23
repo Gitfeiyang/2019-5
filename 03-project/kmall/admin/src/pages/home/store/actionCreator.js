@@ -16,9 +16,7 @@ export const getCountAction = ()=>{
 			const data = result.data
 			if(data.code == 0){
 				//派发action将获取的后台数据存到store
-				// console.log('aaa')
 				dispatch(getSetCountAction(data.data))
-
 			}
 		})
 		.catch(err=>{
@@ -42,5 +40,6 @@ export const getCountAction = ()=>{
 			console.log(err)
 		})
 		*/
+
 	}
 }
