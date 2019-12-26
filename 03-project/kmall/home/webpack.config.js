@@ -26,6 +26,7 @@ module.exports = {
 		'user-register':'./src/pages/user-register',
 		'result':'./src/pages/result',
 		'user-center':'./src/pages/user-center',
+		'user-update-password':'./src/pages/user-update-password',
 	},
 	//输出
 	output: {// webpack 如何输出结果的相关选项
@@ -85,6 +86,13 @@ module.exports = {
 			        }
 			    }               
 			},
+			//处理tpl
+			{
+			    test:/\.tpl$/,
+			    use: {
+			        loader: 'html-loader',
+			    }               
+			},
 	    ]
 	 },
 	plugins:[
@@ -95,6 +103,7 @@ module.exports = {
 	    new htmlWebpackPlugin(getHtmlConfig('user-register','用户注册')),
 	    new htmlWebpackPlugin(getHtmlConfig('result','结果页')),
 	    new htmlWebpackPlugin(getHtmlConfig('user-center','个人中心')),
+	    new htmlWebpackPlugin(getHtmlConfig('user-update-password','修改密码')),
 	    //自动清理多余文件
 	    new CleanWebpackPlugin(),
 	    //单独打包CSS文件
