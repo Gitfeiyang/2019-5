@@ -36,7 +36,7 @@ var page = {
 			_this.submit()
 		})
 		//监听键盘事件,回车键提交数据
-		$('input').on('keyup',function(ev){
+		$('.side-content input').on('keyup',function(ev){
 			if(ev.keyCode == 13){
 				_this.submit()
 			}

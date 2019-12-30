@@ -7,14 +7,18 @@ import {
 import CategoryList from './list.js'
 import CategoryAdd from './add.js'
 
+
 class Category extends Component{
 	render(){
 		return (
-			<Switch>
-			<Route exact path='/category' component={CategoryList} />
-			<Route path='/category/add' component={CategoryAdd} />
-			</Switch>
+			<div className='Category'>
+				<Switch>
+					<Route exact path='/category/' component={CategoryList} />
+					<Route path='/category/add' component={CategoryAdd} />
+				</Switch>
+			</div>
 		)
 	}
 }
+
 export default Category

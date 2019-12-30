@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="app">
+		<p ref="p1">{{message}}</p>
+	</div>
+</body>
+<script src="js/vue.js"></script>
+<script>
+	// console.log(Vue)
+	//vm (VieModel 的缩写)
+	var vm = new Vue({
+		el:'#app',
+		data:{
+			message:'hello Vue'
+		},
+		beforeCreate(){
+			console.log('beforeCreate:::')
+			console.log('this.$el::',this.$el)//undefined
+			console.log('this.$data::',this.$data)//undefined
+			console.log('this.$refs::',this.$refs)//{}
+		},
+		created(){
+			console.log('beforeCreate:::')
+			console.log('this.$el::',this.$el)//undefined
+			console.log('this.$data::',this.$data)//obj
+			console.log('this.$refs::',this.$refs)//{}
+		},
+		beforeMount(){
+			console.log('beforeCreate:::')
+			console.log('this.$el::',this.$el)//obj
+			console.log('this.$data::',this.$data)//obj
+			console.log('this.$refs::',this.$refs)//{}
+		},
+		mount(){
+			console.log('beforeCreate:::')
+			console.log('this.$el::',this.$el)//obj
+			console.log('this.$data::',this.$data)//obj
+			console.log('this.$refs::',this.$refs)//{}
+		},
+		beforeUpdate(){
+			console.log('beforeCreate:::')
+			console.log('this.$el::',this.$el)//obj
+			console.log('this.$data::',this.$data)//obj
+			console.log('this.$refs::',this.$refs)//{}
+		},
+		update(){
+			console.log('beforeCreate:::')
+			console.log('this.$el::',this.$el)//obj
+			console.log('this.$data::',this.$data)//obj
+			console.log('this.$refs::',this.$refs)//{}
+		},
+		beforeDestory(){
+			console.log('beforeCreate:::')
+			console.log('this.$el::',this.$el)//obj
+			console.log('this.$data::',this.$data)//obj
+			console.log('this.$refs::',this.$refs)//{}
+		},
+		destory(){
+			console.log('beforeCreate:::')
+			console.log('this.$el::',this.$el)//obj
+			console.log('this.$data::',this.$data)//obj
+			console.log('this.$refs::',this.$refs)//{}
+		},
+	})
+</script>	
+</html>

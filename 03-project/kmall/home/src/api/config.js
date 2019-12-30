@@ -6,6 +6,7 @@ var API_CONFIG = {
 	checkUsername: 					['/users/checkUsername','get'],
 	getUserInfo: 					['/sessions/users','get'],
 	updateUsers: 					['/users','put'],
+	getHomeCategories: 				['/categories/homeCategories','get'],
 }
 
 module.exports = {

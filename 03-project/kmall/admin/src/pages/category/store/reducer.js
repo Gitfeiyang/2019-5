@@ -7,11 +7,13 @@ const defaultState = fromJS({
 	current:0,
 	pageSize:0,
 	total:0,
-	isFecthing:false
+	isFecthing:false,
+	categories:[]
 })
 import * as types from './actionTypes.js'
 
 export default (state=defaultState,action)=>{
+	//处理分类列表分页
 	if(action.type == types.SET_PAGE){
 		return state.merge({
 			list:fromJS(action.payload.list),
@@ -25,6 +27,9 @@ export default (state=defaultState,action)=>{
 	}
 	if(action.type == types.PAGE_REQUEST_DONE){
 		return state.set('isFecthing',false)
+	}
+	if(action.type == types.SET_LEVEL_CATEGORIES){
+		return state.set('categories',fromJS(action.payload))
 	}
 	return state
 }

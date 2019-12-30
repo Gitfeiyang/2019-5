@@ -1,0 +1,24 @@
+	.ProductList .ant-table-body{
+	min-height: 600px;
+}
+.ProductList .add-btn{
+	float: right;
+}
+.ProductList .btn {
+	height: 40px;
+}
+.ProductSave .simditor-body{
+	overflow: hidden;
+}
+.imageBox li {
+	float: left;
+	list-style: none;
+	width: 100px;
+	height: 100px;
+	margin-left: 15px;
+	border: 1px solid #CCC;
+}
+.imageBox li img{
+	width: 100%;
+	height: 100%;
+}

@@ -33,14 +33,14 @@ const request = (url,method,data)=>{
 		}
 		axios(options)
 		.then(result=>{
-			if (result.data.code == 10) {
-				//后台session过期或通过别的方式清除掉,为了保持状态统一，
-				//应该返回前台登陆页面
-				// 1.清除前台locaStorage
-				removerUsername()
-				// 2.返回登陆页面
-				window.location.herf='login'
-				reject('请求失败，没有权限')
+			if(result.data.code == 10){
+				//后台session过期或者通过别的途径把它给清除掉了,为了保持状态统一
+				//应该前台返回登录页面
+				//1.清除前台localStorage
+				removeUsername()
+				//2.返回登录页面
+				window.location.href = '/login'
+				reject('请求失败,没有权限')
 			}
 			resolve(result)
 		})
@@ -49,4 +49,5 @@ const request = (url,method,data)=>{
 		})
 	})
 }
+
 export default getApiObj(API_CONFIG)
