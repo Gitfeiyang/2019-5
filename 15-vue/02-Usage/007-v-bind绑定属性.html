@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style>
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	.active{
+		background-color: #ccc;
+	}
+	.error{
+		color:skyblue;
+	}
+	p{
+		margin-top: 20px;
+	}
+</style>
+<body>
+	<div id="app">
+		<p>万里悲秋常作客，百年多病独登台</p>
+		<p class="active error">class="active error"</p>
+		<p :class="{active:true,error:true}">
+		:class="{active:true,error:true}</p>
+		<p :class="active:isActive,error:isError">
+		:class="{active:isActive,error:isError}"</p>
+		<p :class="[isActive ? 'active' : '','error']">
+		:class="[isActive ? 'active' : '','error']"</p>
+	</div>
+</body>
+<script src="js/vue.js"></script>
+<script>
+	var vm = new Vue({
+		el:'#app',
+		data:{
+			isActive:true,
+			isError:true,
+			actived:[
+			{active:true},
+			{err:true}
+			]
+		}
+	})
+</script>	
+</html>

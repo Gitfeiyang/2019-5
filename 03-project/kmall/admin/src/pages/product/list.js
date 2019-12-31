@@ -11,7 +11,7 @@ import {
 import {actionCreator} from './store/index.js'
 import Layout from 'common/layout'
 
-
+ 
 //容器组件
 class ProductList extends Component{
 	constructor(props){
@@ -113,7 +113,7 @@ class ProductList extends Component{
 			          <Breadcrumb.Item>商品列表</Breadcrumb.Item>
 			        </Breadcrumb>
 			        <div className='btn'>
-			        	<Link to='/product/save'><Button type="primary" className='add-btn'>新增商品</Button></Link>
+			        	<Link to='/product/save'><Button type="primary" className='add-btn'>编辑商品</Button></Link>
 			        </div>
 			        <div className='content'>
 			        	<Table 

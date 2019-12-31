@@ -3,13 +3,12 @@ import * as types from './actionTypes.js'
 import api from 'api'
 import { message } from 'antd'
 
-
+ 
 //处理新增分类action
 export const getAddCategoriesAction = (values)=>{
 	return (dispatch,getState)=>{
 		api.addCategories(values)
 		.then(result=>{
-			console.log(result)
 			const data = result.data
 			if(data.code == 0){
 				message.success('新增分类成功')
@@ -34,7 +33,6 @@ export const getLevelCategoriesAction = ()=>{
 			level:3
 		})
 		.then(result=>{
-			console.log(result)
 			const data = result.data
 			if(data.code == 0){
 				dispatch(setLevelCategoriesAction(data.data))

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style>
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	.large-box{
+		width: 600px;
+		height: 600px;
+		background-color: #ccc;
+		border: 1px solid #000;
+		margin: 50px auto;
+	}
+	.big-box{
+		width: 400px;
+		height: 400px;
+		background-color: blue;
+		border: 1px solid #000;
+		margin: 50px auto;
+	}
+	.small-box{
+		width: 200px;
+		height: 200px;
+		background-color: red;
+		border: 1px solid #000;
+		margin: 50px auto;
+	}
+</style>
+<body>
+	<div id="app">
+		<div class="large-box" @click="clickLargeBox()">
+			<div class="big-box" @click.self="clickBigBox()">
+				<div class="small-box" @click="clickSmallBox()"></div>
+			</div>
+		</div>
+	</div>
+</body>
+<script src="js/vue.js"></script>
+<script>
+	var vm = new Vue({
+		el:'#app',
+		methods:{
+			clickLargeBox:function(){
+				console.log('click a box ')
+			},
+			clickBigBox:function(ev){
+				// ev.selfPropagation()
+				console.log('click b box ')
+			},
+			clickSmallBox:function(){
+				console.log('click c box ')
+			},
+		}
+	})
+</script>	
+</html>

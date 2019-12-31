@@ -6,7 +6,9 @@ import { Breadcrumb,Form, Select, Input, Button, InputNumber } from 'antd'
 const { Option } = Select
 import './index.css'
 import Layout from 'common/layout'
- 
+import UploadImage from 'common/upload-image'
+import {UPLOAD_PRODUCT_IMAGE,UPLOAD_PRODUCT_DETAIL_IMAGE} from 'api/config.js'
+
 class ProductSave extends Component{
 	constructor(props){
 		super(props)
@@ -75,13 +77,21 @@ class ProductSave extends Component{
 					          })(<InputNumber min={0} />)}
 					        </Form.Item>
 					        <Form.Item label="封面图片">
-					        	upload image
+					        	<UploadImage  
+					          		max={1}
+					          		action={UPLOAD_PRODUCT_IMAGE}
+					          		getFileList = {(fileList)=>{
+					          			// handleMainImage(fileList)
+					          			console.log('father::',fileList)
+					          		}}
+					          		// fileList = {mainImageList}
+					          	/>
 					        </Form.Item>
 					        <Form.Item label="商品图片">
 					        	upload image
 					        </Form.Item>
 					        <Form.Item label="商品详情">
-					        	rich eidtor
+					        	rich editer
 					        </Form.Item>
 					        <Form.Item wrapperCol={{ span: 12, offset: 5 }}>
 					          <Button type="primary" onClick={this.handleSubmit}>
