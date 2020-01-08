@@ -4,9 +4,15 @@ import api from 'api'
 import { message } from 'antd'
 
  
-//处理新增分类action
-export const getAddCategoriesAction = (values)=>{
+//处理新增商品分类action
+export const getSaveProductAction = (values)=>{
 	return (dispatch,getState)=>{
+		console.log(values)
+		const state = getState().get('product')
+		const mainImage = state.get('mainImage')
+		const images = state.get('images')
+		const detail = state.get('detail')
+		/*
 		api.addCategories(values)
 		.then(result=>{
 			const data = result.data
@@ -20,10 +26,24 @@ export const getAddCategoriesAction = (values)=>{
 		.catch(err=>{
 			console.log(err)
 		})
+		*/
 	}
 }
 const setLevelCategoriesAction = (payload)=>({
 	type:types.SET_LEVEL_CATEGORIES,
+	payload
+})
+//处理自定义组件存值到store
+export const getMainImageAction = (payload)=>({
+	type:types.SET_MAIN_IMAGE,
+	payload
+})
+export const getImagesAction = (payload)=>({
+	type:types.SET_IMAGES,
+	payload
+})
+export const getDetailAction = (payload)=>({
+	type:types.SET_DETAIL,
 	payload
 })
 //处理获取最新父级分类数据

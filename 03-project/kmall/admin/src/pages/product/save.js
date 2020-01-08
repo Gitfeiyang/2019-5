@@ -7,13 +7,18 @@ const { Option } = Select
 import './index.css'
 import Layout from 'common/layout'
 import UploadImage from 'common/upload-image'
+import RichEditor from 'common/rich-editor'
+
 import {UPLOAD_PRODUCT_IMAGE,UPLOAD_PRODUCT_DETAIL_IMAGE} from 'api/config.js'
 
 class ProductSave extends Component{
 	constructor(props){
 		super(props)
 		this.handleSubmit = this.handleSubmit.bind(this)
-	}
+		this.state = {
+			productId:this.props.match.params.productId
+		}
+	} 
 	componentDidMount(){
 		//获取最新父级分类数据
 		this.props.handleLevelCategories()
@@ -22,15 +27,20 @@ class ProductSave extends Component{
     	e.preventDefault();
 		this.props.form.validateFields((err, values) => {
 		    if (!err) {
-		        // console.log('Received values of form: ', values);
-		        this.props.handleAdd(values)
+		        // console.log(values)
+		        this.props.handleSave(values)
 		    }
 		});
 	}
 	render(){
 		const { getFieldDecorator } = this.props.form
-		const { categories } = this.props
-		console.log(categories)
+		const { 
+			categories,
+			handleMainImage,
+			handleImages,
+			handleDetail,
+		 } = this.props
+		// console.log(categories)
 		return (
 			<div className='ProductSave'>
 				<Layout>
@@ -76,22 +86,39 @@ class ProductSave extends Component{
 					            rules: [{ required: true, message: '请输入商品库存' }],
 					          })(<InputNumber min={0} />)}
 					        </Form.Item>
-					        <Form.Item label="封面图片">
+					        <Form.Item
+					        	label="封面图片"
+					        	required={true}
+					        	validateStatus='error'
+					        	help='请上传图片'
+					        >
 					        	<UploadImage  
 					          		max={1}
 					          		action={UPLOAD_PRODUCT_IMAGE}
 					          		getFileList = {(fileList)=>{
-					          			// handleMainImage(fileList)
-					          			console.log('father::',fileList)
+					          			handleImages(fileList)
+					          			// console.log('father::',fileList)
 					          		}}
 					          		// fileList = {mainImageList}
 					          	/>
 					        </Form.Item>
 					        <Form.Item label="商品图片">
-					        	upload image
+					        	<UploadImage  
+					          		max={5}
+					          		action={UPLOAD_PRODUCT_IMAGE}
+					          		getFileList = {(fileList)=>{
+					          			handleMainImage(fileList)
+					          			// console.log('father::',fileList)
+					          		}}
+					          	/>
 					        </Form.Item>
 					        <Form.Item label="商品详情">
-					        	rich editer
+					        	<RichEditor
+					        		url={UPLOAD_PRODUCT_DETAIL_IMAGE}
+					        		getValues={(values)=>{
+					        			handleDetail(values)
+					        		}}
+					        	 />
 					        </Form.Item>
 					        <Form.Item wrapperCol={{ span: 12, offset: 5 }}>
 					          <Button type="primary" onClick={this.handleSubmit}>
@@ -115,11 +142,20 @@ const mapStateToProps = (state)=>{
 //将方法映射到组件
 const mapDispatchToProps = (dispatch)=>{
 	return {
-		handleAdd:(values)=>{
-			dispatch(actionCreator.getAddCategoriesAction(values))
+		handleSave:(values)=>{
+			dispatch(actionCreator.getSaveProductAction(values))
 		},
 		handleLevelCategories:()=>{
 			dispatch(actionCreator.getLevelCategoriesAction())
+		},
+		handleMainImage:(fileList)=>{
+			dispatch(actionCreator.getMainImageAction(fileList))
+		},
+		handleImages:(fileList)=>{
+			dispatch(actionCreator.getImagesAction(fileList))
+		},
+		handleDetail:(values)=>{
+			dispatch(actionCreator.getDetailAction(values))
 		},
 	}
 }
